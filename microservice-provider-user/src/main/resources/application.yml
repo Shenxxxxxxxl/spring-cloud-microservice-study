@@ -1,0 +1,60 @@
+server:
+  port: 8000
+#spring:
+#  application:
+#    name: microservice-provider-user    # 项目名称尽量用小写
+#  jpa:
+#    generate-ddl: false
+#    show-sql: true
+#    hibernate:
+#      ddl-auto: none
+#  datasource:                           # 指定数据源
+#    platform: h2                        # 指定数据源类型
+#    schema: classpath:schema.sql        # 指定h2数据库的建表脚本
+#    data: classpath:data.sql            # 指定h2数据库的insert脚本
+
+spring: #spring参数配置
+  application:
+    name: microservice-provider-user    # 项目名称尽量用小写
+#  profiles:
+#    active: dev
+  session:
+    store-type : none
+  datasource: #数据源参数配置
+    itmuch:
+      name: etcloud
+      url: jdbc:mysql://${itmuch.mysql.ipport}/itmuch?useOldAliasMetadataBehavior=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&tinyInt1isBit=false
+      username: root
+      password: 123456
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      maxIdle: 20
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+logging:
+  level:
+    root: INFO
+    org.hibernate: INFO
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
+    com.itmuch.youran.persistence: ERROR
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery:8761/eureka/    # 指定注册中心的地址
+  instance:
+    preferIpAddress: true
+# 参考文档：http://projects.spring.io/spring-cloud/docs/1.0.3/spring-cloud.html#_standalone_mode
+# 参考文档：http://my.oschina.net/buwei/blog/618756
