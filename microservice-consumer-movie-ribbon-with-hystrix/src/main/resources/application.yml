@@ -1,14 +1,11 @@
 server:
-  port: 8761                    # 指定该Eureka实例的端口
-
+  port: 8011
+spring:
+  application:
+    name: microservice-consumer-movie-ribbon-with-hystrix
 eureka:
-  instance:
-    hostname: discovery         # 指定该Eureka实例的主机名
   client:
-    registerWithEureka: false
-    fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-
-# 参考文档：http://projects.spring.io/spring-cloud/docs/1.0.3/spring-cloud.html#_standalone_mode
-# 参考文档：http://my.oschina.net/buwei/blog/618756
+      defaultZone: http://discovery:8761/eureka/
+  instance:
+    hostname: ribbon          # 此处，preferIpAddress不设置或者设为false，不能设为true，否则影响turbine的测试。turbine存在的问题：eureka.instance.hostname一致时只能检测到一个节点，会造成turbine数据不完整

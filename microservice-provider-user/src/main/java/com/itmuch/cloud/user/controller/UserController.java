@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/user")
+@RestController
 public class UserController {
-   /* @Autowired
-    private DiscoveryClient discoveryClient;*/
+    @Autowired
+    private DiscoveryClient discoveryClient;
 
     @Autowired
     private UserService userService;
@@ -34,12 +34,10 @@ public class UserController {
      * 本地服务实例的信息
      * @return
      */
-/*
     @GetMapping("/instance-info")
     public ServiceInstance showInfo() {
         ServiceInstance localServiceInstance = this.discoveryClient.getLocalServiceInstance();
         return localServiceInstance;
     }
-*/
 
 }

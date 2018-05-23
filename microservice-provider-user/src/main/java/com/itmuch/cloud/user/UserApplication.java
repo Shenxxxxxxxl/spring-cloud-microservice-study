@@ -5,6 +5,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
+/**
+ * @EnableDiscoveryClient注解，即可将microservice-provider-user服务注册到Eureka上面去
+ * 启动，访问http://localhost:8761可以查看microservice-provider-user服务已经被注册到了Eureka上面
+ */
 @SpringBootApplication
 @EnableDiscoveryClient
 @EntityScan("com.itmuch.cloud.base.entity")

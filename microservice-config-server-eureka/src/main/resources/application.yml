@@ -1,14 +1,17 @@
 server:
-  port: 8761                    # 指定该Eureka实例的端口
-
+  port: 8050
+spring:
+  application:
+    name: microservice-config-server-eureka
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/eacdy/spring-cloud-study/
+          search-paths: config-repo
+          username:
+          password:
 eureka:
-  instance:
-    hostname: discovery         # 指定该Eureka实例的主机名
   client:
-    registerWithEureka: false
-    fetchRegistry: false
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
-
-# 参考文档：http://projects.spring.io/spring-cloud/docs/1.0.3/spring-cloud.html#_standalone_mode
-# 参考文档：http://my.oschina.net/buwei/blog/618756
+      defaultZone: http://discovery:8761/eureka/

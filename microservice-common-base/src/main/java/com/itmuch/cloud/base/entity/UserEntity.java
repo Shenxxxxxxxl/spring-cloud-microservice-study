@@ -1,5 +1,6 @@
 package com.itmuch.cloud.base.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -10,6 +11,7 @@ public class UserEntity extends BaseEntity {
     private String username;
     private Integer age;
 
+    @Column(name="username",nullable = false)
     public String getUsername() {
         return username;
     }
@@ -18,6 +20,7 @@ public class UserEntity extends BaseEntity {
         this.username = username;
     }
 
+    @Column(name="age",nullable = false)
     public Integer getAge() {
         return age;
     }

@@ -1,14 +1,20 @@
 server:
   port: 8761                    # 指定该Eureka实例的端口
 
+spring: #spring参数配置
+  profiles:
+    active: dev
 eureka:
   instance:
-    hostname: discovery         # 指定该Eureka实例的主机名
+    hostname: ${myeureka.hostname} # 指定该Eureka实例的主机名
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    #Eureka会将自己也作为客户端尝试注册，所以在单机模式下，我们需要禁止该行为。高可用的Eureka允许注册为服务
+    registerWithEureka: false #表示是否注册自身到eureka服务器
+    fetchRegistry: false #是否从eureka服务器获取注册信息
+    #高可用的Eureka将这两个值设置为true，或者不设置。
     serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/ #设置eureka服务器所在的地址，查询服务和注册服务都需要依赖这个地址
+      #高可用的Eureka的defaultZone将多个Eureka的地址写到defaultZone中
 
 # 参考文档：http://projects.spring.io/spring-cloud/docs/1.0.3/spring-cloud.html#_standalone_mode
 # 参考文档：http://my.oschina.net/buwei/blog/618756

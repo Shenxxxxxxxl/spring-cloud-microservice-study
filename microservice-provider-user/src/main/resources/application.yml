@@ -16,13 +16,13 @@ server:
 spring: #spring参数配置
   application:
     name: microservice-provider-user    # 项目名称尽量用小写
-#  profiles:
-#    active: dev
+  profiles:
+    active: dev
   session:
     store-type : none
   datasource: #数据源参数配置
     itmuch:
-      name: etcloud
+      name: itmuch
       url: jdbc:mysql://${itmuch.mysql.ipport}/itmuch?useOldAliasMetadataBehavior=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true&allowMultiQueries=true&tinyInt1isBit=false
       username: root
       password: 123456
@@ -43,17 +43,27 @@ spring: #spring参数配置
       testOnReturn: false
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
+  jpa:
+    database: MYSQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
 logging:
   level:
     root: INFO
-    org.hibernate: INFO
+    org.hibernate: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.type.descriptor.sql.BasicExtractor: TRACE
     com.itmuch.youran.persistence: ERROR
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://discovery:8761/eureka/    # 指定注册中心的地址
+      defaultZone: http://${myeureka.hostname}:8761/eureka/    # 指定注册中心的地址
+      #高可用的eureka，将多个eureka的地址写到defaultZone上
   instance:
     preferIpAddress: true
 # 参考文档：http://projects.spring.io/spring-cloud/docs/1.0.3/spring-cloud.html#_standalone_mode

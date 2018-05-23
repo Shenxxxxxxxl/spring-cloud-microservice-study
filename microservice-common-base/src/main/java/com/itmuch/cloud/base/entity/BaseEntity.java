@@ -26,7 +26,7 @@ public class BaseEntity implements Serializable {
         this.id = id;
     }
 
-    @Column(name="createUserId",nullable = false)
+    @Column(name="createuserid",nullable = false)
     public String getCreateUserId() {
         return createUserId;
     }
@@ -35,7 +35,7 @@ public class BaseEntity implements Serializable {
         this.createUserId = createUserId;
     }
 
-    @Column(name="createDate",nullable = false)
+    @Column(name="createdate",nullable = false)
     public Date getCreateDate() {
         return createDate;
     }
@@ -44,6 +44,7 @@ public class BaseEntity implements Serializable {
         this.createDate = createDate;
     }
 
+    @Column(name="updateuserid",nullable = false)
     public String getUpdateUserId() {
         return updateUserId;
     }
@@ -52,6 +53,7 @@ public class BaseEntity implements Serializable {
         this.updateUserId = updateUserId;
     }
 
+    @Column(name="updatedate",nullable = false)
     public Date getUpdateDate() {
         return updateDate;
     }
